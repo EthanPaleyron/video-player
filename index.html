@@ -5,12 +5,64 @@
   <link rel="stylesheet" href="/scss/_link.scss">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Name</title>
+  <script src="https://kit.fontawesome.com/2621df78fc.js" crossorigin="anonymous"></script>
+  <title>Video Player</title>
 </head>
 
 <body>
 
-  <h1>Hello World</h1>
+  <h1>Video Player</h1>
+
+  <div class="position_video">
+    <div class="content_video">
+      <video autoplay>
+        <source src="public/myVideo.mp4" type="video/mp4">
+        la vidéo ne se charge pas cause de votre navigateur
+      </video>
+
+      <nav>
+        <progress></progress>
+        <div class="buttons">
+          <div class="nav_content_left">
+            <button id="playPause"><i id="iconPlayPause" class="fa-solid fa-pause"></i></button>
+            <button id="volume"><i id="iconVolume" class="fa-solid fa-volume-high"></i></button>
+            <input id="volumeRange" type="range" name="range">
+          </div>
+          <div class="nav_content_right">
+            <button id="readingSpeed"><i class="fa-solid fa-gauge"></i></button>
+            <ul class="list_speed">
+              <li><i></i>
+                <p>0.25</p>
+              </li>
+              <li><i></i>
+                <p>0.50</p>
+              </li>
+              <li><i></i>
+                <p>0.75</p>
+              </li>
+              <li><i class="fa-solid fa-check"></i>
+                <p>Normal</p>
+              </li>
+              <li><i></i>
+                <p>1.25</p>
+              </li>
+              <li><i></i>
+                <p>1.50</p>
+              </li>
+              <li><i></i>
+                <p>1.75</p>
+              </li>
+              <li><i></i>
+                <p>2</p>
+              </li>
+            </ul>
+            <button id="restart"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+            <button id="fullScreen"><i class="fa-solid fa-expand"></i></button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
 
   <script type="module" src="/js/main.js"></script>
 </body>
