@@ -15,7 +15,7 @@
 
   <div class="position_video">
     <div class="content_video">
-      <video autoplay>
+      <video autoplay disableremoteplayback>
         <source src="public/myVideo.mp4" type="video/mp4">
         la vidéo ne se charge pas cause de votre navigateur
       </video>
@@ -25,34 +25,38 @@
         <div class="buttons">
           <div class="nav_content_left">
             <button id="playPause"><i id="iconPlayPause" class="fa-solid fa-pause"></i></button>
-            <button id="volume"><i id="iconVolume" class="fa-solid fa-volume-high"></i></button>
-            <input id="volumeRange" type="range" name="range">
+            <div class="volumes">
+              <button id="volume"><i id="iconVolume" class="fa-solid fa-volume-high"></i></button>
+              <input id="volumeRange" type="range" name="range">
+            </div>
+            <p class="time"><span id="videoTime"></span> / <span id="totalVideoTime"></span></p>
           </div>
           <div class="nav_content_right">
+            <a href="public/myVideo.mp4" download><i class="fa-solid fa-download"></i></a>
             <button id="readingSpeed"><i class="fa-solid fa-gauge"></i></button>
             <ul class="list_speed">
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>0.25</p>
               </li>
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>0.50</p>
               </li>
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>0.75</p>
               </li>
-              <li><i class="fa-solid fa-check"></i>
+              <li><i class="iconCheck fa-solid fa-check"></i>
                 <p>Normal</p>
               </li>
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>1.25</p>
               </li>
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>1.50</p>
               </li>
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>1.75</p>
               </li>
-              <li><i></i>
+              <li><i class="iconCheck"></i>
                 <p>2</p>
               </li>
             </ul>

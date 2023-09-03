@@ -2,7 +2,7 @@ const video = document.querySelector("video");
 video.loop = true;
 video.volume = 0.5;
 
-const progress = document.querySelector("progress")
+const progress = document.querySelector("progress");
 
 video.addEventListener("timeupdate", () => {
     progress.value = video.currentTime / video.duration;
@@ -87,7 +87,69 @@ const readingSpeed = document.querySelector("#readingSpeed").addEventListener("c
     }
 })
 
-const speeds = document.querySelectorAll("li");
+// const speeds = document.querySelectorAll("li");
+// const iconCheck = document.querySelectorAll(".iconCheck");
+// let s = [0.25, 0.50, 0.75, 1, 1.25, 1.50, 1.75, 2];
+// speeds.forEach(speed => {
+//     speed.addEventListener("click", () => {
+//         // video.playbackRate = 1;
+//     })
+// });
+// speeds[0].addEventListener("click", () => {
+//     video.playbackRate = speed[0];
+//     iconCheck[0].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 0;
+// })
+
+// speeds[1].addEventListener("click", () => {
+//     video.playbackRate = speed[1];
+//     iconCheck[1].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 1;
+// })
+
+// speeds[2].addEventListener("click", () => {
+//     video.playbackRate = speed[2];
+//     iconCheck[2].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 2;
+// })
+
+// speeds[3].addEventListener("click", () => {
+//     video.playbackRate = speed[3];
+//     iconCheck[3].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 3;
+// })
+
+// speeds[4].addEventListener("click", () => {
+//     video.playbackRate = speed[4];
+//     iconCheck[4].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 4;
+// })
+
+// speeds[5].addEventListener("click", () => {
+//     video.playbackRate = speed[5];
+//     iconCheck[5].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].classList = "iconCheck";
+//     checkActual = 5;
+// })
+
+// speeds[6].addEventListener("click", () => {
+//     video.playbackRate = speed[6];
+//     iconCheck[6].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 6;
+// })
+
+// speeds[7].addEventListener("click", () => {
+//     video.playbackRate = speed[7];
+//     iconCheck[7].className = "iconCheck fa-solid fa-check";
+//     iconCheck[checkActual].className = "iconCheck";
+//     checkActual = 7;
+// })
 
 // keyboard shortcut
 document.addEventListener("keydown", (e) => {
@@ -101,8 +163,14 @@ document.addEventListener("keydown", (e) => {
         case "ArrowRight":
             video.currentTime += 10;
             break
+        // case "ArrowUp":
+        //     volumeRange.value += 10;
+        //     break
+        // case "ArrowDown":
+        //     volumeRange.value -= 10;
+        //     break
         case "KeyF":
-                openFullscreen();
+            openFullscreen();
             break
     }
 })
