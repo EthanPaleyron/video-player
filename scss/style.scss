@@ -1,157 +1,78 @@
+@import "base";
+@import "design-token";
+
 body {
-    font-family: cursive, sans-serif;
-    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+  background: url("../public/bg.jpg") no-repeat;
+  background-size: cover;
 }
 
 h1 {
-    margin: 4rem 0;
-    text-align: center;
-    text-decoration: underline
+  font-size: 2.5rem;
+  margin: 4rem 0;
+  text-align: center;
+  text-decoration: underline;
 }
 
-.position_video {
+main {
+  color: $w;
+  display: flex;
+  justify-content: center;
+  .video {
+    cursor: pointer;
+    position: relative;
+    width: fit-content;
+    video {
+      width: 60rem;
+      border-radius: 0.5rem;
+    }
+    img {
+      width: 60rem;
+      border-radius: 0.5rem;
+    }
+  }
+
+  nav {
+    position: absolute;
+    bottom: 0.25rem;
+    width: 100%;
+    background-color: $ba;
+    padding: 0.5rem 1rem 1rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     display: flex;
-    justify-content: center;
-
-    .content_video {
-        position: relative;
-
-        video {
-            position: relative;
-            width: 50rem;
-
-            &:hover~nav {
-                opacity: 1;
-                transition: 0.3s ease-out;
-            }
-        }
+    align-items: center;
+    flex-direction: column;
+    gap: 0.7rem;
+    progress {
+      width: 100%;
     }
-
-    nav {
-        color: $w;
-        opacity: 0;
-        position: absolute;
-        z-index: 2;
-        bottom: 0.3rem;
-        left: 0;
-        width: 100%;
-        padding: 0.5rem 1rem;
-        background: linear-gradient(360deg, rgba(2, 0, 36, 1) 0%, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    .content_nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      ul {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        transition: 0.3s ease-out;
-
-        &:hover {
-            opacity: 1;
+        align-items: center;
+        gap: 1.2rem;
+        li {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
         }
-
-        progress {
-            margin-bottom: 0.5rem;
-            width: 100%;
-            height: 0.7rem;
+      }
+      #speedVideo {
+        color: $b;
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 0.3rem 0.5rem;
+        border-radius: 1rem;
+        option {
+          font-weight: bold;
+          i {
+            filter: brightness(0) saturate(100%);
+          }
         }
-
-        .buttons {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-
-            .nav_content_left {
-                width: 50%;
-                display: flex;
-                gap: 0.5rem;
-            }
-
-            .nav_content_right {
-                width: 50%;
-                display: flex;
-                justify-content: end;
-                gap: 0.5rem;
-            }
-
-            button,
-            a {
-                border-radius: 50%;
-                width: 2.2rem;
-                height: 2.2rem;
-                padding: 0.5rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                &:hover {
-                    background-color: rgba(128, 128, 128, 0.600);
-                }
-
-                i {
-                    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7500%) hue-rotate(348deg) brightness(97%) contrast(116%);
-                    font-size: 1.3rem;
-                }
-            }
-
-            #readingSpeed {
-                position: relative;
-            }
-
-            .list_speed {
-                display: none;
-                position: absolute;
-                bottom: 5rem;
-                color: $w;
-                width: 13rem;
-                background-color: #202020db;
-                padding: 0.7rem;
-                border-radius: 0.5rem;
-                flex-direction: column;
-                gap: 1rem;
-
-                li {
-                    position: relative;
-                    user-select: none;
-                    display: flex;
-                    align-items: center;
-
-                    .fa-check {
-                        position: absolute;
-                        left: 0;
-                    }
-
-                    p {
-                        margin-left: 1.6rem;
-                        font-weight: bold;
-                    }
-                }
-            }
-
-            #volumeRange {
-                opacity: 0;
-                width: 0rem;
-            }
-
-            .volumes {
-                display: flex;
-                align-items: center;
-                gap: 0.5rem;
-
-                &:hover>#volumeRange {
-                    opacity: 1;
-                    width: 6rem;
-                    transition: 0.5s ease-out;
-                }
-            }
-
-            .time {
-                display: flex;
-                align-items: center;
-            }
-
-            button,
-            input,
-            progress,
-            li {
-                cursor: pointer;
-            }
-        }
+      }
     }
+  }
 }

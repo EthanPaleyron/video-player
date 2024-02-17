@@ -4,21 +4,23 @@
   padding: 0;
   box-sizing: border-box;
 }
-  
-ul, ol {
+
+ul,
+ol {
   list-style: none;
 }
-  
+
 a {
   text-decoration: none;
   display: inline-block;
 }
-  
+
 button {
+  cursor: pointer;
   border: none;
   background-color: inherit;
 }
-  
+
 img {
   object-fit: cover;
   max-width: 100%;
