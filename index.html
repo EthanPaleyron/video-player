@@ -15,22 +15,21 @@
 
   <main>
     <div class="video">
-      <div id="videoContent">
-        <video>
-          <source src="public/myVideo.mp4" type="video/mp4">
-          la vidéo ne se charge pas cause de votre navigateur
-        </video>
-      </div>
+      <img src="public/banner.jpg" id="banner" alt="banner">
+      <video>
+        <source src="public/myVideo.mp4" type="video/mp4">
+        la vidéo ne se charge pas cause de votre navigateur
+      </video>
 
       <nav>
-        <progress></progress>
+        <input type="range" id="progressBar">
         <div class="content_nav">
           <ul>
             <li><button id="playPause"><i id="iconPlayPause" class="fa-solid fa-play"></i></button></li>
             <li><button id="volume"><i id="iconVolume" class="fa-solid fa-volume-high"></i></button></li>
-            <li><input id="volumeRange" type="range" name="range"></li>
+            <li><input id="volumeRange" type="range" name="range" value="50"></li>
             <li>
-              <p><span id="videoTime"></span> / <span id="totalVideoTime"></span></p>
+              <p><span id="videoTime">0:00</span> / <span id="totalVideoTime">0:00</span></p>
             </li>
           </ul>
           <ul>

@@ -6,6 +6,10 @@ body {
   background-size: cover;
 }
 
+input:in-range {
+  cursor: pointer;
+}
+
 h1 {
   font-size: 2.5rem;
   margin: 4rem 0;
@@ -21,17 +25,22 @@ main {
     cursor: pointer;
     position: relative;
     width: fit-content;
-    video {
-      width: 60rem;
-      border-radius: 0.5rem;
-    }
+    video,
     img {
       width: 60rem;
       border-radius: 0.5rem;
     }
+    img {
+      z-index: 1;
+      position: absolute;
+    }
+    video {
+      position: relative;
+    }
   }
 
   nav {
+    z-index: 2;
     position: absolute;
     bottom: 0.25rem;
     width: 100%;
@@ -43,7 +52,8 @@ main {
     align-items: center;
     flex-direction: column;
     gap: 0.7rem;
-    progress {
+    cursor: default;
+    input {
       width: 100%;
     }
     .content_nav {
@@ -59,6 +69,9 @@ main {
           align-items: center;
           gap: 0.5rem;
         }
+      }
+      input {
+        width: 5rem;
       }
       #speedVideo {
         color: $b;

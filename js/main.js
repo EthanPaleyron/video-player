@@ -3,40 +3,58 @@ const banner = document.querySelector("#banner");
 const videoContent = document.querySelector("#videoContent");
 const playPause = document.querySelector("#playPause");
 const iconPlayPause = document.querySelector("#iconPlayPause");
-const progress = document.querySelector("progress");
+const progressBar = document.querySelector("#progressBar");
 const videoTime = document.querySelector("#videoTime");
 const totalVideoTime = document.querySelector("#totalVideoTime");
+let isPlaying = false;
+let isMuted = false;
+let tmp = 50;
 
 // Parametre de base sur la video
 video.loop = true;
 video.volume = 0.5;
 video.disableRemotePlayback;
-progress.value = 0;
+progressBar.value = 0;
 
-let isPlaying = false;
-
-// Temps actuel de la video
-video.addEventListener("timeupdate", () => {
-  progress.value = video.currentTime / video.duration;
-  const currentTime = formatTime(video.currentTime);
-  videoTime.textContent = currentTime;
-});
-
-// Durée totale de la video
-video.addEventListener("loadedmetadata", function () {
-  const currentTimeTotal = formatTime(video.duration);
-  totalVideoTime.textContent = currentTimeTotal;
-});
-
-// Convertisseur
+// Convertisseur de temps
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = Math.floor(seconds % 60);
   return `${minutes}:${remainingSeconds < 10 ? "0" : ""}${remainingSeconds}`;
 }
 
+video.addEventListener("loadedmetadata", function () {
+  // Temps total de la video
+  progressBar.value = 0;
+  const currentTimeTotal = formatTime(video.duration);
+  totalVideoTime.textContent = currentTimeTotal;
+});
+
+video.addEventListener("timeupdate", () => {
+  if (banner.style.display !== "none") {
+    // Si la baniere est présente on la retire
+    banner.style.display = "none";
+  }
+  // Temps actuel de la video
+  const currentTime = formatTime(video.currentTime);
+  videoTime.textContent = currentTime;
+  // Avancement de la barre de progression par rapport au temps actuel de la video
+  progressBar.value = (video.currentTime / video.duration) * 100;
+});
+
+// Mise à jour du temps de la video en fonction de la position de la barre de progression
+progressBar.addEventListener("input", () => {
+  const progress = parseFloat(progressBar.value);
+  const newTime = (progress / 100) * video.duration;
+  video.currentTime = newTime;
+});
+
 // Pouvoir mettre en route ou en pause la video
 function playPauseVideo() {
+  if (banner.style.display !== "none") {
+    // Si la baniere est présente on la retire
+    banner.style.display = "none";
+  }
   if (isPlaying === false) {
     video.play();
     iconPlayPause.className = "fa-solid fa-pause";
@@ -47,15 +65,14 @@ function playPauseVideo() {
     isPlaying = false;
   }
 }
-playPause.addEventListener("click", () => playPauseVideo());
+banner.addEventListener("click", () => playPauseVideo());
 video.addEventListener("click", () => playPauseVideo());
+playPause.addEventListener("click", () => playPauseVideo());
 
 // Regler le volume de la video
 const volume = document.querySelector("#volume");
 const volumeRange = document.querySelector("#volumeRange");
 const iconVolume = document.querySelector("#iconVolume");
-let isMuted = false;
-let tmp = 50;
 function volumeVideo() {
   if (isMuted === false) {
     tmp = volumeRange.value; // Enregistre la hauteur du song
@@ -71,10 +88,9 @@ function volumeVideo() {
   }
 }
 
-// coupée ou remettre le song de la video
+// Coupée ou remettre le song de la video
 volume.addEventListener("click", () => volumeVideo());
-volumeRange.addEventListener("change", () => {
-  video.volume = volumeRange.value / 100;
+function mutedVideo() {
   if (volumeRange.value / 0) {
     iconVolume.className = "fa-solid fa-volume-high";
     isMuted = false;
@@ -82,11 +98,10 @@ volumeRange.addEventListener("change", () => {
     iconVolume.className = "fa-solid fa-volume-xmark";
     isMuted = true;
   }
-});
-
-// Remetre la video a 0
-document.querySelector("#restart").addEventListener("click", () => {
-  video.currentTime = 0;
+}
+volumeRange.addEventListener("input", () => {
+  video.volume = volumeRange.value / 100;
+  mutedVideo();
 });
 
 // Gerer la vitesse de la video
@@ -95,8 +110,14 @@ speedVideo.addEventListener("change", () => {
   video.playbackRate = speedVideo.value;
 });
 
+// Remetre la video a 0
+document.querySelector("#restart").addEventListener("click", () => {
+  video.currentTime = 0;
+});
+
 // Les racourcci clavier
-document.addEventListener("keydown", (e) => {
+document.addEventListener("keyup", (e) => {
+  e.preventDefault();
   switch (e.code) {
     case "Space":
       playPauseVideo();
@@ -106,6 +127,19 @@ document.addEventListener("keydown", (e) => {
       break;
     case "ArrowRight":
       video.currentTime += 5;
+      break;
+    case "ArrowUp":
+      video.volume += 0.1;
+      volumeRange.value = video.volume * 100;
+      mutedVideo();
+      break;
+    case "ArrowDown":
+      video.volume -= 0.1;
+      volumeRange.value = video.volume * 100;
+      mutedVideo();
+      break;
+    case "KeyR":
+      video.currentTime = 0;
       break;
   }
 });
