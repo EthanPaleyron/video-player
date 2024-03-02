@@ -8,7 +8,8 @@ const videoTime = document.querySelector("#videoTime");
 const totalVideoTime = document.querySelector("#totalVideoTime");
 let isPlaying = false;
 let isMuted = false;
-let tmp = 50;
+let tmpVolumeVideo = video.volume;
+let tmpValueVolume = 50;
 
 // Parametre de base sur la video
 video.loop = true;
@@ -75,14 +76,15 @@ const volumeRange = document.querySelector("#volumeRange");
 const iconVolume = document.querySelector("#iconVolume");
 function volumeVideo() {
   if (isMuted === false) {
-    tmp = volumeRange.value; // Enregistre la hauteur du song
-    volumeRange.value = 0;
+    tmpVolumeVideo = video.volume; // Enregistre la hauteur du song
+    tmpValueVolume = volumeRange.value; // Enregistre la hauteur de la valeur de l'input
     video.volume = 0;
+    volumeRange.value = 0;
     iconVolume.className = "fa-solid fa-volume-xmark";
     isMuted = true;
   } else {
-    volumeRange.value = tmp;
-    video.volume = 1;
+    video.volume = tmpVolumeVideo;
+    volumeRange.value = tmpValueVolume;
     iconVolume.className = "fa-solid fa-volume-high";
     isMuted = false;
   }
